@@ -6,8 +6,8 @@ Ecra::Ecra() : cursorLinha(0), cursorColuna(0) {
 }
 
 void Ecra::limpa() {
-    for (int l = 0; l < MAX_LINHAS; ++l)
-        for (int c = 0; c < MAX_COLUNAS; ++c)
+    for (int l = 0; l < Settings::ecra_max_linhas; ++l)
+        for (int c = 0; c < Settings::ecra_max_colunas; ++c)
             buffer[l][c] = ' ';
 
     cursorLinha = 0;
@@ -15,23 +15,23 @@ void Ecra::limpa() {
 }
 
 void Ecra::moveCursorPara(int linha, int coluna) {
-    if (linha >= 0 && linha < MAX_LINHAS)
+    if (linha >= 0 && linha < Settings::ecra_max_linhas)
         cursorLinha = linha;
 
-    if (coluna >= 0 && coluna < MAX_COLUNAS)
+    if (coluna >= 0 && coluna < Settings::ecra_max_colunas)
         cursorColuna = coluna;
 }
 
 void Ecra::escreveCaracter(char c) {
-    if (cursorLinha < 0 || cursorLinha >= MAX_LINHAS ||
-        cursorColuna < 0 || cursorColuna >= MAX_COLUNAS) {
+    if (cursorLinha < 0 || cursorLinha >= Settings::ecra_max_linhas ||
+        cursorColuna < 0 || cursorColuna >= Settings::ecra_max_colunas) {
         return;
         }
 
     buffer[cursorLinha][cursorColuna] = c;
 
     ++cursorColuna;
-    if (cursorColuna >= MAX_COLUNAS) {
+    if (cursorColuna >= Settings::ecra_max_colunas) {
         cursorColuna = 0;
         ++cursorLinha;
     }
@@ -64,8 +64,8 @@ void Ecra::desenhaMoldura(int linha, int coluna, int altura, int largura) {
 }
 
 void Ecra::mostra() const {
-    for (int l = 0; l < MAX_LINHAS; ++l) {
-        for (int c = 0; c < MAX_COLUNAS; ++c)
+    for (int l = 0; l < Settings::ecra_max_linhas; ++l) {
+        for (int c = 0; c < Settings::ecra_max_colunas; ++c)
             std::cout << buffer[l][c];
         std::cout << '\n';
     }

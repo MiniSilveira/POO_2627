@@ -1,12 +1,12 @@
 #ifndef ECRA_H
 #define ECRA_H
 
+#include "Settings.h"
 #include <string>
 
 class Ecra {
 public:
-    static const int MAX_LINHAS = 40;
-    static const int MAX_COLUNAS = 80;
+    
 
     Ecra();
 
@@ -18,7 +18,7 @@ public:
     void mostra() const;
 
 private:
-    char buffer[MAX_LINHAS][MAX_COLUNAS];
+    char buffer[Settings::ecra_max_linhas][Settings::ecra_max_colunas];
     int cursorLinha;
     int cursorColuna;
 };

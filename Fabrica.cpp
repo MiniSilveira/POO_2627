@@ -186,10 +186,10 @@ bool Fabrica::carregar(const std::string &nomeFicheiro) {
 
         for (char simbolo : linhaTexto) {
             if (simbolo != '.' &&
-                simbolo != '*' &&
-                simbolo != 'f' &&
-                simbolo != 's' &&
-                simbolo != 'g') {
+                simbolo != '#' &&
+                simbolo != '%' &&
+                simbolo != '$' &&
+                simbolo != '~') {
                 return false;
             }
         }
@@ -229,25 +229,25 @@ bool Fabrica::carregar(const std::string &nomeFicheiro) {
                     grelha[l][c] = Terreno(TipoTerreno::Solo);
                     break;
 
-                case '*':
+                case '#':
                     grelha[l][c] = Terreno(TipoTerreno::Cratera);
                     break;
 
-                case 'f':
+                case '%':
                     grelha[l][c].setDeposito(
                         TipoTerreno::DepositoFerro,
                         distQuantidade(gerador)
                     );
                     break;
 
-                case 's':
+                case '$':
                     grelha[l][c].setDeposito(
                         TipoTerreno::DepositoSilicio,
                         distQuantidade(gerador)
                     );
                     break;
 
-                case 'g':
+                case '~':
                     grelha[l][c].setDeposito(
                         TipoTerreno::DepositoGelo,
                         distQuantidade(gerador)

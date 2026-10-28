@@ -11,10 +11,10 @@ TipoTerreno Terreno::getTipo() const {
 
 char Terreno::getSimbolo() const {
     switch (tipo) {
-        case TipoTerreno::Cratera: return '*';
-        case TipoTerreno::DepositoFerro: return 'f';
-        case TipoTerreno::DepositoSilicio: return 's';
-        case TipoTerreno::DepositoGelo: return 'g';
+        case TipoTerreno::Cratera: return '#';
+        case TipoTerreno::DepositoFerro: return '%';
+        case TipoTerreno::DepositoSilicio: return '$';
+        case TipoTerreno::DepositoGelo: return '~';
         default: return ' ';
     }
 }
