@@ -7,7 +7,7 @@
 #include "Fabrica.h"
 #include "Terreno.h"
 
-bool fabricaFoiCriada = false;
+
 
 void mostrarTerreno(const Fabrica &fabrica,
                     const std::string &linhaStr,
@@ -55,6 +55,7 @@ int main() {
     Fabrica fabrica;
     Ecra ecra;
     std::string linha;
+    bool fabricaFoiCriada = false;
 
     std::cout << "Simulador de fabrica em Marte\n";
 
@@ -93,8 +94,17 @@ int main() {
             }
 
             try {
-                int l = std::stoi(partes[1]);
-                int c = std::stoi(partes[2]);
+                std::size_t fimLinhas = 0;
+                std::size_t fimColunas = 0;
+
+                int l = std::stoi(partes[1], &fimLinhas);
+                int c = std::stoi(partes[2], &fimColunas);
+
+                if (fimLinhas != partes[1].size() ||
+                    fimColunas != partes[2].size()) {
+                    std::cout << "As dimensoes devem ser numeros inteiros.\n";
+                    continue;
+                    }
 
                 if (fabrica.criar(l, c)) {
                     fabricaFoiCriada = true;
@@ -136,7 +146,7 @@ int main() {
                 continue;
             }
 
-            if (partes.size() < 2 || partes[1].size() != 2) {
+            if (partes.size() != 2 || partes[1].size() != 2) {
                 std::cout << "Sintaxe: lposicao <lc>\n";
                 continue;
             }

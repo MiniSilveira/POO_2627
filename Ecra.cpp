@@ -15,11 +15,8 @@ void Ecra::limpa() {
 }
 
 void Ecra::moveCursorPara(int linha, int coluna) {
-    if (linha >= 0 && linha < Settings::ecra_max_linhas)
-        cursorLinha = linha;
-
-    if (coluna >= 0 && coluna < Settings::ecra_max_colunas)
-        cursorColuna = coluna;
+    cursorLinha = linha;
+    cursorColuna = coluna;
 }
 
 void Ecra::escreveCaracter(char c) {
