@@ -11,4 +11,21 @@ add_executable(POO_2627
         Terreno.cpp
         main.cpp
         Fabrica.cpp
-        )
+        Interpretador.h
+        Interpretador.cpp
+        Maquina.cpp
+        Maquinas.cpp
+        Comandos.cpp
+        Itens.cpp
+)
+
+# Programa de testes separado do simulador.
+add_executable(TestesSilo
+    TestesSilo.cpp
+    Ecra.cpp
+    Terreno.cpp
+    Fabrica.cpp
+    Maquina.cpp
+    Maquinas.cpp
+    Itens.cpp
+)

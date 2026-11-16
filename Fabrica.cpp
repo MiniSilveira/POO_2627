@@ -1,6 +1,10 @@
 #include "Fabrica.h"
 #include "Ecra.h"
 #include "Settings.h"
+#include "Maquinas.h"
+
+#include <memory>
+#include <utility>
 
 #include <algorithm>
 #include <fstream>
@@ -8,6 +12,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <iostream>
+#include <limits>
 
 // --------------------------------------------------
 // Construtor
@@ -295,6 +301,112 @@ const Terreno &Fabrica::getTerreno(int linha, int coluna) const {
 // Apresentação da fábrica e do painel de estado
 // --------------------------------------------------
 
+const Maquina *Fabrica::getMaquina(int linha, int coluna) const {
+    for (const auto &maquina : maquinas) {
+        if (maquina->getLinha() == linha &&
+            maquina->getColuna() == coluna) {
+            return maquina.get();
+        }
+    }
+
+    return nullptr;
+}
+
+std::size_t Fabrica::getNumeroMaquinas() const {
+    return maquinas.size();
+}
+
+bool Fabrica::comprar(
+    char tipo,
+    int linha,
+    int coluna,
+    char direcao,
+    std::string &erro
+) {
+    erro.clear();
+
+    if (linhas == 0 || colunas == 0) {
+        erro = "Cria ou carrega primeiro a fabrica.";
+        return false;
+    }
+
+    if (!posicaoValida(linha, coluna)) {
+        erro = "Posicao fora da fabrica.";
+        return false;
+    }
+
+    if (direcao != 'c' && direcao != 'b' &&
+        direcao != 'e' && direcao != 'd') {
+        erro = "Direcao invalida. Usa c, b, e ou d.";
+        return false;
+    }
+
+    if (getTerreno(linha, coluna).getTipo() == TipoTerreno::Cratera) {
+        erro = "Nao podes colocar uma maquina numa cratera.";
+        return false;
+    }
+
+    if (getMaquina(linha, coluna) != nullptr) {
+        erro = "Ja existe uma maquina nessa posicao.";
+        return false;
+    }
+
+    std::unique_ptr<Maquina> nova;
+
+    switch (tipo) {
+        case 'p':
+            nova = std::make_unique<Perfuradora>(
+                linha, coluna, direcao
+            );
+            break;
+
+        case 't':
+            nova = std::make_unique<Transportador>(
+                linha, coluna, direcao
+            );
+            break;
+
+        case 'r':
+            nova = std::make_unique<Refinaria>(
+                linha, coluna, direcao
+            );
+            break;
+
+        case 'o':
+            nova = std::make_unique<Oficina>(
+                linha, coluna, direcao
+            );
+            break;
+
+        case 's':
+            nova = std::make_unique<Silo>(
+                linha, coluna, direcao
+            );
+            break;
+
+        case 'l':
+            nova = std::make_unique<Lancador>(
+                linha, coluna, direcao
+            );
+            break;
+
+        default:
+            erro = "Tipo de maquina invalido.";
+            return false;
+    }
+
+    const int custo = nova->getCusto();
+
+    if (creditos < custo) {
+        erro = "Creditos insuficientes.";
+        return false;
+    }
+
+    maquinas.push_back(std::move(nova));
+    creditos -= custo;
+
+    return true;
+}
 void Fabrica::mostra(Ecra &ecra) const {
     ecra.limpa();
 
@@ -326,7 +438,13 @@ void Fabrica::mostra(Ecra &ecra) const {
 
         for (int c = 0; c < colunas; ++c) {
             ecra.moveCursorPara(l + 2, c + 2);
-            ecra.escreveCaracter(grelha[l][c].getSimbolo());
+            const Maquina *maquina = getMaquina(l, c);
+
+            if (maquina != nullptr) {
+                ecra.escreveCaracter(maquina->getSimbolo());
+            } else {
+                ecra.escreveCaracter(grelha[l][c].getSimbolo());
+            }
         }
     }
 
@@ -340,23 +458,257 @@ void Fabrica::mostra(Ecra &ecra) const {
     );
 
     ecra.moveCursorPara(1, colunaPainel + 2);
-    ecra.escreveString(
-        "Instante: " + std::to_string(instante)
-    );
+    ecra.escreveString("Instante: " + std::to_string(instante));
 
     ecra.moveCursorPara(2, colunaPainel + 2);
-    ecra.escreveString(
-        "Creditos: " + std::to_string(creditos)
-    );
+    ecra.escreveString("Creditos: " + std::to_string(creditos));
 
     ecra.moveCursorPara(3, colunaPainel + 2);
-    ecra.escreveString("Maquinas: 0");
+    ecra.escreveString("Maquinas: " + std::to_string(getNumeroMaquinas()));
 
     ecra.moveCursorPara(4, colunaPainel + 2);
     ecra.escreveString("Engenheiros: 0");
 
     ecra.moveCursorPara(6, colunaPainel + 2);
-    ecra.escreveString("Sem atividade de maquinas.");
+
+    if (acontecimentos.empty()) {
+        ecra.escreveString("Sem eventos no ultimo instante.");
+    } else {
+        ecra.escreveString(
+            "Eventos: " + std::to_string(acontecimentos.size())
+        );
+
+        ecra.moveCursorPara(7, colunaPainel + 2);
+
+        ecra.escreveString(
+            acontecimentos.back().substr(0, 30)
+        );
+    }
 
     ecra.mostra();
+}
+
+bool Fabrica::vender(
+    int linha,
+    int coluna,
+    std::string &erro
+) {
+    erro.clear();
+
+    if (linhas == 0 || colunas == 0) {
+        erro = "Cria ou carrega primeiro a fabrica.";
+        return false;
+    }
+
+    if (!posicaoValida(linha, coluna)) {
+        erro = "Posicao fora da fabrica.";
+        return false;
+    }
+
+    for (auto it = maquinas.begin(); it != maquinas.end(); ++it) {
+        if ((*it)->getLinha() == linha &&
+            (*it)->getColuna() == coluna) {
+
+            const int valorVenda =
+                (*it)->getCusto() *
+                Settings::maquina_percentagem_venda / 100;
+
+            maquinas.erase(it);
+            creditos += valorVenda;
+
+            return true;
+            }
+    }
+
+    erro = "Nao existe nenhuma maquina nessa posicao.";
+    return false;
+}
+
+bool Fabrica::rodar(
+    int linha,
+    int coluna,
+    char direcao,
+    std::string &erro
+) {
+    erro.clear();
+
+    if (linhas == 0 || colunas == 0) {
+        erro = "Cria ou carrega primeiro a fabrica.";
+        return false;
+    }
+
+    if (!posicaoValida(linha, coluna)) {
+        erro = "Posicao fora da fabrica.";
+        return false;
+    }
+
+    if (direcao != 'c' && direcao != 'b' &&
+        direcao != 'e' && direcao != 'd') {
+        erro = "Direcao invalida. Usa c, b, e ou d.";
+        return false;
+        }
+
+    for (const auto &maquina : maquinas) {
+        if (maquina->getLinha() == linha &&
+            maquina->getColuna() == coluna) {
+
+            return maquina->roda(direcao);
+            }
+    }
+
+    erro = "Nao existe nenhuma maquina nessa posicao.";
+    return false;
+}
+
+void Fabrica::mostraEstado() const {
+    if (linhas == 0 || colunas == 0) {
+        std::cout << "A fabrica ainda nao foi criada.\n";
+        return;
+    }
+
+    std::cout
+        << "Estado da fabrica\n"
+        << "Dimensoes: " << linhas << " x " << colunas << '\n'
+        << "Instante: " << instante << '\n'
+        << "Creditos: " << creditos << '\n'
+        << "Maquinas: " << maquinas.size() << "\n\n";
+
+    if (maquinas.empty()) {
+        std::cout << "Nao existem maquinas.\n\n";
+    } else {
+        for (const auto &maquina : maquinas) {
+            std::cout << maquina->getDescricao() << '\n';
+        }
+    }
+
+    std::cout
+        << "Engenheiros: ainda nao implementados nesta etapa.\n"
+        << "Envios para a Terra: ainda nao implementados nesta etapa.\n";
+
+    std::cout << "\nResumo do ultimo instante:\n";
+
+    if (acontecimentos.empty()) {
+        std::cout << "Sem eventos registados.\n";
+    } else {
+        for (const std::string &mensagem : acontecimentos) {
+            std::cout << "- " << mensagem << '\n';
+        }
+    }
+}
+
+Maquina *Fabrica::getMaquina(int linha, int coluna) {
+    for (const auto &maquina : maquinas) {
+        if (maquina->getLinha() == linha &&
+            maquina->getColuna() == coluna) {
+            return maquina.get();
+        }
+    }
+
+    return nullptr;
+}
+
+bool Fabrica::avancar(
+    int numeroInstantes,
+    Ecra &ecra,
+    std::string &erro
+) {
+    erro.clear();
+
+    if (linhas == 0 || colunas == 0) {
+        erro = "Cria ou carrega primeiro a fabrica.";
+        return false;
+    }
+
+    if (numeroInstantes <= 0) {
+        erro = "O numero de instantes deve ser positivo.";
+        return false;
+    }
+
+    if (numeroInstantes >
+        std::numeric_limits<int>::max() - instante) {
+        erro = "O numero indicado ultrapassa o limite do contador.";
+        return false;
+    }
+
+    for (int passo = 0; passo < numeroInstantes; ++passo) {
+        ++instante;
+        acontecimentos.clear();
+
+        // Fase 1: cada maquina realiza a sua atuacao local.
+        for (const auto &maquina : maquinas) {
+            const std::string mensagem = maquina->atua(instante);
+
+            if (!mensagem.empty()) {
+                acontecimentos.push_back(mensagem);
+            }
+        }
+
+        // Fase 2: cada maquina tenta uma entrega.
+        for (const auto &maquina : maquinas) {
+            int linhaDestino = maquina->getLinha();
+            int colunaDestino = maquina->getColuna();
+
+            switch (maquina->getDirecao()) {
+                case 'c':
+                    --linhaDestino;
+                    break;
+
+                case 'b':
+                    ++linhaDestino;
+                    break;
+
+                case 'e':
+                    --colunaDestino;
+                    break;
+
+                case 'd':
+                    ++colunaDestino;
+                    break;
+
+                default:
+                    continue;
+            }
+
+            if (!posicaoValida(linhaDestino, colunaDestino)) {
+                continue;
+            }
+
+            Maquina *destino = getMaquina(
+                linhaDestino,
+                colunaDestino
+            );
+
+            if (destino == nullptr) {
+                continue;
+            }
+
+            if (maquina->tentaEntregar(*destino, instante)) {
+                std::string mensagem = "Transferencia de ";
+
+                mensagem += static_cast<char>(
+                    'a' + maquina->getLinha()
+                );
+
+                mensagem += static_cast<char>(
+                    'a' + maquina->getColuna()
+                );
+
+                mensagem += " para ";
+
+                mensagem += static_cast<char>(
+                    'a' + linhaDestino
+                );
+
+                mensagem += static_cast<char>(
+                    'a' + colunaDestino
+                );
+
+                acontecimentos.push_back(mensagem);
+            }
+        }
+
+        mostra(ecra);
+    }
+
+    return true;
 }

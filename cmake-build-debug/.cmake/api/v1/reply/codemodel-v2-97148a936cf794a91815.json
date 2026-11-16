@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "POO_2627",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -39,8 +41,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "POO_2627::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-POO_2627-Debug-32db75cc12566fb58c6a.json",
+					"jsonFile" : "target-POO_2627-Debug-9425ca9aeb68f3b276f7.json",
 					"name" : "POO_2627",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TestesSilo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TestesSilo-Debug-f9b6bfc4c40f5e819795.json",
+					"name" : "TestesSilo",
 					"projectIndex" : 0
 				}
 			]

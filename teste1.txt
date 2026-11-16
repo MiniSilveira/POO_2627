@@ -1,0 +1,5 @@
+ajuda
+fabrica 12 20
+lposicao aa
+lposicao bb 1
+ajuda executa

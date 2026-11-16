@@ -1,0 +1,39 @@
+ajuda
+ajuda melhora
+ajuda atribui
+ajuda recupera
+estado
+avanca
+contrata joaquim
+carrega C:/Users/minis/Documents/GitHub/POO_2627/mapa_compras.txt
+estado
+compra s aa d
+compra t ab d
+compra p ac b
+compra s aa d
+compra s bb d
+compra x ca d
+roda ab b
+lposicao ab
+lposicao aa 1
+estado
+avanca 2
+estado
+melhora aa
+contrata joaquim
+atribui 1 aa
+despede 1
+grava antes
+recupera antes
+atribui abc aa
+atribui 0 aa
+despede 2abc
+melhora zz
+grava antes extra
+avanca 0
+estado extra
+vende ac
+lposicao ac
+estado
+fim
+ajuda

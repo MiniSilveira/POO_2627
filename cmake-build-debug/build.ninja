@@ -77,6 +77,41 @@ build CMakeFiles/POO_2627.dir/Fabrica.cpp.obj: CXX_COMPILER__POO_2627_unscanned_
   OBJECT_DIR = CMakeFiles\POO_2627.dir
   OBJECT_FILE_DIR = CMakeFiles\POO_2627.dir
 
+build CMakeFiles/POO_2627.dir/Interpretador.cpp.obj: CXX_COMPILER__POO_2627_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Interpretador.cpp || cmake_object_order_depends_target_POO_2627
+  DEP_FILE = CMakeFiles\POO_2627.dir\Interpretador.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\POO_2627.dir
+  OBJECT_FILE_DIR = CMakeFiles\POO_2627.dir
+
+build CMakeFiles/POO_2627.dir/Maquina.cpp.obj: CXX_COMPILER__POO_2627_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Maquina.cpp || cmake_object_order_depends_target_POO_2627
+  DEP_FILE = CMakeFiles\POO_2627.dir\Maquina.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\POO_2627.dir
+  OBJECT_FILE_DIR = CMakeFiles\POO_2627.dir
+
+build CMakeFiles/POO_2627.dir/Maquinas.cpp.obj: CXX_COMPILER__POO_2627_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Maquinas.cpp || cmake_object_order_depends_target_POO_2627
+  DEP_FILE = CMakeFiles\POO_2627.dir\Maquinas.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\POO_2627.dir
+  OBJECT_FILE_DIR = CMakeFiles\POO_2627.dir
+
+build CMakeFiles/POO_2627.dir/Comandos.cpp.obj: CXX_COMPILER__POO_2627_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Comandos.cpp || cmake_object_order_depends_target_POO_2627
+  DEP_FILE = CMakeFiles\POO_2627.dir\Comandos.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\POO_2627.dir
+  OBJECT_FILE_DIR = CMakeFiles\POO_2627.dir
+
+build CMakeFiles/POO_2627.dir/Itens.cpp.obj: CXX_COMPILER__POO_2627_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Itens.cpp || cmake_object_order_depends_target_POO_2627
+  DEP_FILE = CMakeFiles\POO_2627.dir\Itens.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\POO_2627.dir
+  OBJECT_FILE_DIR = CMakeFiles\POO_2627.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target POO_2627
@@ -85,7 +120,7 @@ build CMakeFiles/POO_2627.dir/Fabrica.cpp.obj: CXX_COMPILER__POO_2627_unscanned_
 #############################################
 # Link the executable POO_2627.exe
 
-build POO_2627.exe: CXX_EXECUTABLE_LINKER__POO_2627_Debug CMakeFiles/POO_2627.dir/Ecra.cpp.obj CMakeFiles/POO_2627.dir/Terreno.cpp.obj CMakeFiles/POO_2627.dir/main.cpp.obj CMakeFiles/POO_2627.dir/Fabrica.cpp.obj
+build POO_2627.exe: CXX_EXECUTABLE_LINKER__POO_2627_Debug CMakeFiles/POO_2627.dir/Ecra.cpp.obj CMakeFiles/POO_2627.dir/Terreno.cpp.obj CMakeFiles/POO_2627.dir/main.cpp.obj CMakeFiles/POO_2627.dir/Fabrica.cpp.obj CMakeFiles/POO_2627.dir/Interpretador.cpp.obj CMakeFiles/POO_2627.dir/Maquina.cpp.obj CMakeFiles/POO_2627.dir/Maquinas.cpp.obj CMakeFiles/POO_2627.dir/Comandos.cpp.obj CMakeFiles/POO_2627.dir/Itens.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\POO_2627.dir
@@ -94,6 +129,82 @@ build POO_2627.exe: CXX_EXECUTABLE_LINKER__POO_2627_Debug CMakeFiles/POO_2627.di
   TARGET_FILE = POO_2627.exe
   TARGET_IMPLIB = libPOO_2627.dll.a
   TARGET_PDB = POO_2627.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target TestesSilo
+
+
+#############################################
+# Order-only phony target for TestesSilo
+
+build cmake_object_order_depends_target_TestesSilo: phony || .
+
+build CMakeFiles/TestesSilo.dir/TestesSilo.cpp.obj: CXX_COMPILER__TestesSilo_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/TestesSilo.cpp || cmake_object_order_depends_target_TestesSilo
+  DEP_FILE = CMakeFiles\TestesSilo.dir\TestesSilo.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\TestesSilo.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestesSilo.dir
+
+build CMakeFiles/TestesSilo.dir/Ecra.cpp.obj: CXX_COMPILER__TestesSilo_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Ecra.cpp || cmake_object_order_depends_target_TestesSilo
+  DEP_FILE = CMakeFiles\TestesSilo.dir\Ecra.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\TestesSilo.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestesSilo.dir
+
+build CMakeFiles/TestesSilo.dir/Terreno.cpp.obj: CXX_COMPILER__TestesSilo_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Terreno.cpp || cmake_object_order_depends_target_TestesSilo
+  DEP_FILE = CMakeFiles\TestesSilo.dir\Terreno.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\TestesSilo.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestesSilo.dir
+
+build CMakeFiles/TestesSilo.dir/Fabrica.cpp.obj: CXX_COMPILER__TestesSilo_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Fabrica.cpp || cmake_object_order_depends_target_TestesSilo
+  DEP_FILE = CMakeFiles\TestesSilo.dir\Fabrica.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\TestesSilo.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestesSilo.dir
+
+build CMakeFiles/TestesSilo.dir/Maquina.cpp.obj: CXX_COMPILER__TestesSilo_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Maquina.cpp || cmake_object_order_depends_target_TestesSilo
+  DEP_FILE = CMakeFiles\TestesSilo.dir\Maquina.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\TestesSilo.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestesSilo.dir
+
+build CMakeFiles/TestesSilo.dir/Maquinas.cpp.obj: CXX_COMPILER__TestesSilo_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Maquinas.cpp || cmake_object_order_depends_target_TestesSilo
+  DEP_FILE = CMakeFiles\TestesSilo.dir\Maquinas.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\TestesSilo.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestesSilo.dir
+
+build CMakeFiles/TestesSilo.dir/Itens.cpp.obj: CXX_COMPILER__TestesSilo_unscanned_Debug C$:/Users/minis/Documents/GitHub/POO_2627/Itens.cpp || cmake_object_order_depends_target_TestesSilo
+  DEP_FILE = CMakeFiles\TestesSilo.dir\Itens.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/minis/Documents/GitHub/POO_2627/.
+  OBJECT_DIR = CMakeFiles\TestesSilo.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestesSilo.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target TestesSilo
+
+
+#############################################
+# Link the executable TestesSilo.exe
+
+build TestesSilo.exe: CXX_EXECUTABLE_LINKER__TestesSilo_Debug CMakeFiles/TestesSilo.dir/TestesSilo.cpp.obj CMakeFiles/TestesSilo.dir/Ecra.cpp.obj CMakeFiles/TestesSilo.dir/Terreno.cpp.obj CMakeFiles/TestesSilo.dir/Fabrica.cpp.obj CMakeFiles/TestesSilo.dir/Maquina.cpp.obj CMakeFiles/TestesSilo.dir/Maquinas.cpp.obj CMakeFiles/TestesSilo.dir/Itens.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\TestesSilo.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = TestesSilo.exe
+  TARGET_IMPLIB = libTestesSilo.dll.a
+  TARGET_PDB = TestesSilo.exe.dbg
 
 
 #############################################
@@ -123,6 +234,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build POO_2627: phony POO_2627.exe
 
+build TestesSilo: phony TestesSilo.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -131,7 +244,7 @@ build POO_2627: phony POO_2627.exe
 #############################################
 # Folder: C:/Users/minis/Documents/GitHub/POO_2627/cmake-build-debug
 
-build all: phony POO_2627.exe
+build all: phony POO_2627.exe TestesSilo.exe
 
 # =============================================================================
 # Built-in targets

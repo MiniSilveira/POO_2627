@@ -1,0 +1,4 @@
+ajuda inexistente
+fabrica 12 20
+lposicao aa -1
+lposicao aa

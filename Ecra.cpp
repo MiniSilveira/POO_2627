@@ -61,9 +61,24 @@ void Ecra::desenhaMoldura(int linha, int coluna, int altura, int largura) {
 }
 
 void Ecra::mostra() const {
+    int ultimaLinhaUsada = -1;
+
+    // Procura a ultima linha que tem algum caracter visivel.
     for (int l = 0; l < Settings::ecra_max_linhas; ++l) {
-        for (int c = 0; c < Settings::ecra_max_colunas; ++c)
+        for (int c = 0; c < Settings::ecra_max_colunas; ++c) {
+            if (buffer[l][c] != ' ') {
+                ultimaLinhaUsada = l;
+                break;
+            }
+        }
+    }
+
+    // Mostra apenas ate essa linha.
+    for (int l = 0; l <= ultimaLinhaUsada; ++l) {
+        for (int c = 0; c < Settings::ecra_max_colunas; ++c) {
             std::cout << buffer[l][c];
+        }
+
         std::cout << '\n';
     }
 }

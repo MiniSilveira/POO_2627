@@ -1,9 +1,13 @@
 #ifndef FABRICA_H
 #define FABRICA_H
 
+#include "Maquina.h"
+#include "Terreno.h"
+
+#include <cstddef>
+#include <memory>
 #include <string>
 #include <vector>
-#include "Terreno.h"
 
 class Ecra;
 
@@ -23,7 +27,44 @@ public:
 
     const Terreno &getTerreno(int linha, int coluna) const;
 
+    const Maquina *getMaquina(int linha, int coluna) const;
+    std::size_t getNumeroMaquinas() const;
+
+    bool comprar(
+        char tipo,
+        int linha,
+        int coluna,
+        char direcao,
+        std::string &erro
+    );
+
+    bool vender(
+    int linha,
+    int coluna,
+    std::string &erro
+);
+
+    bool rodar(
+        int linha,
+        int coluna,
+        char direcao,
+        std::string &erro
+    );
+
     void mostra(Ecra &ecra) const;
+
+    void mostraEstado() const;
+
+
+    Maquina *getMaquina(int linha, int coluna);
+
+    bool avancar(
+        int numeroInstantes,
+        Ecra &ecra,
+        std::string &erro
+    );
+
+
 
 private:
     int linhas;
@@ -32,6 +73,8 @@ private:
     int instante;
 
     std::vector<std::vector<Terreno>> grelha;
+    std::vector<std::unique_ptr<Maquina>> maquinas;
+    std::vector<std::string> acontecimentos;
 
     void inicializarGrelha(int novasLinhas, int novasColunas);
     void colocarElementosAleatorios();
